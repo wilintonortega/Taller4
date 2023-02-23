@@ -80,18 +80,22 @@ let helados=[
 // const manuel=500;
 
 function cliente() {
-    for (let i = 0; i < 3 ; i++) {
+    for (let i = 0; i < 3; i++) {
+        
         nombreCliente=prompt("Ingrese el nombre del cliente");
         dineroCliente=prompt("Ingrese el dinero del cliente");
         console.log(`el cliente ${nombreCliente} puede comprar: `);
-        const resultado=helados.filter(helado=>helado.precio<=dineroCliente);
+        const posiblesHelados=helados.filter(helado=>helado.precio<=dineroCliente)
+        console.table(posiblesHelados);
+
+        const resultado=helados.map(helado => {
+           if(helado.precio <= dineroCliente)
+           console.log(`cambio: ${dineroCliente-helado.precio}`)
+
+        } 
       
-        console.table(resultado);
-
-    }
-
-   
-
+        );
+        }
 }
 
 cliente()
