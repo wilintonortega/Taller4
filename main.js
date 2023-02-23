@@ -89,9 +89,11 @@ function cliente() {
         console.table(posiblesHelados);
 
         const resultado=helados.map(helado => {
-           if(helado.precio <= dineroCliente)
-           console.log(`cambio: ${dineroCliente-helado.precio}`)
-
+        
+           if(helado.precio <= dineroCliente) {
+            console.log(`cambio: ${helado.nombre} " - - -" ${dineroCliente-helado.precio}`);
+            
+           }
         } 
       
         );
