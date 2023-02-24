@@ -124,35 +124,38 @@ El programa tiene que pedir el ingreso de su dinero y el nombre de cliente
 Si hay más de un helado con el mismo precio o por de bajo de precio del usuario mostrar las opciones disponibles
 El programa también tiene que poder dar los vueltos de su compra con su factura
 */
-
-const precio=[400,1000,2200,1500,2500,2800,2000];
-const helado=["Bonais","Palito de helado de agua","Palito de helado de crema","Bombón helado con arequipe","Bombón helado con chispas de chocolate","Bombón helado con fresas","Medio litro de helado"];
+const miestilo="background:wheat;padding: 10px 5px;font-family:sans-serif;border: dashed darkslateblue;margin-top: 5px; content: &#128293";
+const helados=[[400,"Bonais"],[1000,"Palito de helado de agua"],[2200,"Palito de helado de crema"],[1500,"Bombón helado con arequipe"],[2500,"Bombón helado con chispas de chocolate"],[2800,"Bombón helado con fresas"],[2000,"Medio litro de helado"]];
 let nvalor=[];
+const emoHelado=String.fromCodePoint(0x1F367)
 
+// console.log(helados[3][1]);//primero es posicion segundo es eleccion de parametros en cada array
 
 for (let i = 0; i < 3; i++) {
         
     nombreCliente=prompt("Ingrese el nombre del cliente").toUpperCase();
     dineroCliente=prompt("Ingrese el dinero del cliente");
-    console.log(`\n ${nombreCliente} Puede comprar con $${dineroCliente}: \n `);
-        for (let j = 0; j < precio.length; j++) {
-            let preciomax=dineroCliente>=precio[j]
+    console.log(` %c ${nombreCliente} Puede comprar con $${dineroCliente}: `,miestilo);
+        for (let j = 0; j < helados.length; j++) {
+            let preciomax=dineroCliente>=helados[j][0]
             if(preciomax){
-                console.log(`$${precio[j]}   -   ${helado[j]} \n`);
-
+                console.table(`${emoHelado} $${helados[j]} \n`);
                 //defino variable para insertar datos en nuevo array nvalor
-                var max=nvalor.push(precio[j]);
+                helados.sort(function (a,b) {
+                    return a[0]-b[0];                  
+                })
+               nvalor.push(helados[j])
             }
-
             //funcion para ordenar valores
-            nvalor.sort(function(a, b){return a-b});
-
-
-
         } 
-        let cambio=dineroCliente-(nvalor[nvalor.length-1]);
-        console.log(`El cambio por comprar el helado mas caro de la lista con $${dineroCliente} es: $${cambio}`);
+
+        console.log(`%cHelado seleccionado: ${emoHelado} ${nvalor[nvalor.length-1]}`,miestilo);
+        //console.log(nvalor[0][0]);
+        let cambio=dineroCliente-(nvalor[nvalor.length-1][0])
+        //console.log(cambio);
+        console.log(`%cEl cambio por comprar el helado mas caro de la lista con $${dineroCliente} es: $${cambio} `,miestilo);
         nvalor=[];
+
 
 
 
